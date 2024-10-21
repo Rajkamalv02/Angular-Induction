@@ -1,61 +1,95 @@
 <div class="dialog-box">
-    <div class="dialog-title">
-      
-            <h1 mat-dialog-title>Schedule Reports</h1>
+  <div class="dialog-title">
+    <h1 mat-dialog-title>Schedule Reports</h1>
 
-            
-                <span class="close-btn" mat-dialog-close><mat-icon fontIcon="close"></mat-icon></span>
-            
-     </div>
-<div mat-dialog-content>
-        <div class="report-type">
-        <h2 class="dialog-content-title">Select Required Reports Types</h2>
-        <div class="checklists" [formGroup]="checklists">
-            <mat-checkbox class="dialog-content-checkbox" disableRippled formControlName="FleetWise">Fleet Wise Report</mat-checkbox>
-            <mat-checkbox class="dialog-content-checkbox" disableRipple="true" formControlName="VehicleWise">Vehicle Wise Report</mat-checkbox>
-            <mat-checkbox class="dialog-content-checkbox" disableRipple="true" formControlName="TripWise">Trip wise</mat-checkbox>
-            <mat-checkbox class="dialog-content-checkbox" disableRipple="true" formControlName="DrivingWise">Driving Scorecard Report</mat-checkbox>
-        </div>
+    <span class="close-btn" mat-dialog-close
+      ><mat-icon fontIcon="close"></mat-icon
+    ></span>
+  </div>
+  <div mat-dialog-content>
+    <div class="report-type">
+      <h2 class="dialog-content-title">Select Required Reports Types</h2>
+      <div class="checklists" [formGroup]="checklists">
+        <mat-checkbox
+          class="dialog-content-checkbox"
+          disableRippled
+          formControlName="FleetWise"
+          >Fleet Wise Report</mat-checkbox
+        >
+        <mat-checkbox
+          class="dialog-content-checkbox"
+          disableRipple="true"
+          formControlName="VehicleWise"
+          >Vehicle Wise Report</mat-checkbox
+        >
+        <mat-checkbox
+          class="dialog-content-checkbox"
+          disableRipple="true"
+          formControlName="TripWise"
+          >Trip wise</mat-checkbox
+        >
+        <mat-checkbox
+          class="dialog-content-checkbox"
+          disableRipple="true"
+          formControlName="DrivingWise"
+          >Driving Scorecard Report</mat-checkbox
+        >
+      </div>
 
-        <button mat-button (click)="show()">Temporary</button>
-        
+      <button mat-button (click)="show()">Temporary</button>
     </div>
+
+    
+
+
     <div class="email">
-        <div class="email-title">
-            <div class="email-title-text">
-                <h2>Enter email ids</h2>
-               
-            </div>
-            <div class="email-btn">
-                <button class="add-email-btn" mat-button (click)="openEmail()" *ngIf="addEmailBtn">+ ADD</button>
-                <button class="add-email-btn" mat-button (click)="clearEmail()" *ngIf="cancelEmailBtn">Cancel</button>
-                </div>
-        </div>      
+      <div class="email-title">
+        <div class="email-title-text">
+          <h2>Enter email ids</h2>
+        </div>
+        <div class="email-btn">
+          <button
+            class="add-email-btn"
+            mat-button
+            (click)="openEmail()"
+            *ngIf="addEmailBtn"
+          >
+            + ADD
+          </button>
+          <button
+            class="add-email-btn"
+            mat-button
+            (click)="clearEmail()"
+            *ngIf="cancelEmailBtn"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <div class="email-fields" *ngIf="showEmailField" [formGroup]="emails">
+        <input type="email" formControlName="email" />
+        <button
+          (click)="addEmail(emails.value)"
+          mat-flat-button
+          color="primary"
+        >
+          Add
+        </button>
+      </div>
+    </div>
+
+    <div class="emailbox" *ngIf="addEmailBox">
+      <div class="email_list" *ngFor="let mail of email_list">
+          <span>{{ mail }}</span>
+          <span><mat-icon class="mt-btn" fontIcon="close"></mat-icon></span>
         
-        <div class="email-fields" *ngIf="showEmailField" [formGroup]="emails">
-            <input type="email" formControlName="email">
-            <button (click)="addEmail(emails.value)" mat-flat-button color="primary">Add</button>
-        </div>
-        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
 
 
-        <div class="emailbox" *ngIf="addEmailBox" >
-                        <!-- <div class="email_list" *ngFor="let mail of list_of_emails">
-                            <span class="emailbox-emails">
-                                
-                                 <span>hello world</span>
-                                 <span><mat-icon fontIcon="close"></mat-icon></span>
-                            </span>
-                        </div> -->
 
-                        <span>{{list_of_emails}}</span>
-                     
-        </div>
-   
-        
-</div>
-<div mat-dialog-actions>
-  
-</div>
-
+  </div>
 </div>
