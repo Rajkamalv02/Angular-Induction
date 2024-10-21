@@ -15,7 +15,7 @@ export class DialogboxComponent implements DoCheck {
   addEmailBox: boolean = false;
   checklists: any;
   isVisible:boolean = false
-  object_of_mails: any = [];
+ 
   email_list: any = [];
   emails: any;
   checklist_value:any
@@ -67,21 +67,23 @@ export class DialogboxComponent implements DoCheck {
     this.addEmailBtn = this.addEmailBtn ? false : true;
   }
 
-  addEmail(email: any) {
-    console.log('received mail:', email);
-    this.object_of_mails.push(email);
-    this.showEmailField = this.showEmailField ? false : true;
-    this.cancelEmailBtn = this.cancelEmailBtn ? false : true;
-    this.addEmailBtn = this.addEmailBtn ? false : true;
-    console.log('the list:', this.object_of_mails);
 
-    this.email_list = this.object_of_mails.map((Obj: any) => {
-      return Object.values(Obj);
-    });
-
-    console.log('the value:', this.email_list);
-    if (this.emails.valid) {
+  addEmail(mail: any) {
+    if (this.emails.valid && mail.email) {  
+      console.log('Received mail:', mail.email);
+      this.email_list.push(mail.email); 
+      this.showEmailField = false; 
+      this.cancelEmailBtn = false; 
+      this.addEmailBtn = true;     
+      console.log('The list:', this.email_list);     
+      this.emails.reset();
       this.addEmailBox = true;
     }
+  }
+  
+
+  remove(i:any){
+       this.email_list.splice(i,1)
+        console.log(this.email_list)
   }
 }

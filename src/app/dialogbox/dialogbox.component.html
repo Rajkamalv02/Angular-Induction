@@ -97,9 +97,9 @@
     </div>
 
     <div class="emailbox" *ngIf="addEmailBox">
-      <div class="email_list" *ngFor="let mail of email_list">
+      <div class="email_list" *ngFor="let mail of email_list;let i = index">
           <span>{{ mail }}</span>
-          <span><mat-icon class="mt-btn" fontIcon="close"></mat-icon></span>
+          <span><mat-icon class="mt-btn" fontIcon="close" (click)="remove(i)"></mat-icon></span>
         
       </div>
     </div>
