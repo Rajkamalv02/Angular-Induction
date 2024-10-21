@@ -1,0 +1,125 @@
+.dialog-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #242424;
+
+    /* border: 1px solid red; */
+}
+.dialog-title h1{
+    /* border: 1px solid red; */
+
+}
+.dialog-title .close-btn{
+    /* border: 1px solid red; */
+    padding:20px;
+    
+}  
+.dialog-content-title{
+    color: #242424;
+}
+.mat-mdc-checkbox.mat-accent {
+    --mdc-checkbox-selected-checkmark-color: #fff;
+    --mdc-checkbox-selected-focus-icon-color: #0288D1;
+    --mdc-checkbox-selected-hover-icon-color: #0288D1;
+    --mdc-checkbox-selected-icon-color:  #0288D1;
+    --mdc-checkbox-selected-pressed-icon-color:  #0288D1;    
+    --mdc-checkbox-unselected-focus-icon-color: #212121;
+    --mdc-checkbox-unselected-hover-icon-color: #212121;
+    --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.38);
+    --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, 0.54);
+    --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+}
+
+/* .mat-mdc-checkbox.mat-accent .mdc-checkbox--selected~.mdc-checkbox__ripple {
+    background: #000 !important; 
+}
+
+
+.mat-mdc-checkbox .mdc-checkbox__ripple {
+    background: #000 !important;
+}
+.mat-mdc-checkbox-ripple, .mdc-checkbox__ripple {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    border-radius: none !important;
+    pointer-events: none;
+} */
+
+.checklists{
+    display: flex;
+    flex-direction: column;
+} 
+
+
+.email-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border:1px solid red; */
+    position: relative;
+}
+.email-title-text{
+    color:#242424;
+    /* border:1px solid green; */
+    
+  
+  
+
+
+}
+
+.email-title-text h2{
+    /* border:1px solid yellow; */
+    
+    
+}
+.email-fields{
+    /* border:1px solid green; */
+    
+
+}
+.email-fields input{
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin-right: 10px;
+    
+
+}
+.email-fields button{
+    height: 30px;
+}
+.add-email-btn{
+    /* border:1px solid red; */
+    padding:10px;
+    font-size: 16px;
+    width: 92px;
+    height: 40px;
+    color:  #0288D1;
+    font-weight: bold;
+    background-color: #FAFAFB;
+}
+
+.emailbox{
+    border-radius: 10px;
+    border: 1px solid gray;
+    height: auto;
+    padding: 10px;
+    margin:10px 0;
+}
+.email_list{
+    border: 1px solid gray;
+    display: flex;
+    width:40%;
+
+}
+.emailbox-emails span{
+    display: flex;
+
+}

@@ -1,0 +1,38 @@
+<mat-card class="card">
+    <mat-card-header class="card-header">
+      <h2>Login</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="loginform">
+        <form [formGroup]="loginForm">
+          <div class="form-fields">
+            <label for="email">Email:*</label>
+            <input type="email" formControlName="email" placeholder="Enter your Email">
+          </div>
+          <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
+            <small class="error" *ngIf="loginForm.get('email')?.errors?.['required']">Email field must be filled</small>
+            <small class="error" *ngIf="loginForm.get('email')?.errors?.['email']">Email must be valid</small>
+          </div>
+  
+          <div class="form-fields">
+            <label for="password">Password:*</label>
+            <input type="password" formControlName="password" placeholder="Enter your Password">
+          </div>
+          <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)">
+            <small class="error" *ngIf="loginForm.get('password')?.errors?.['required']">Password field must be filled</small>
+            <small class="error" *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters</small>
+          </div>
+        </form>
+  
+        <div class="error" [hidden]="error" style="text-align: center; padding:20px">
+          {{message}}
+        </div>
+      </div>
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <button mat-raised-button color="warn" class="btn" (click)="clear()">Clear</button>
+      <button mat-raised-button color="primary" class="btn" (click)="login()" [disabled]="loginForm.invalid">Login</button>
+    </mat-card-actions>
+  </mat-card>
+  

@@ -1,0 +1,66 @@
+
+.card{
+
+    border:1px solid gray;
+    margin:30vh auto;
+    width: 400px;
+    height: auto;
+    position: absolute;
+    padding: 20px;
+  
+    left:0;
+    right: 0;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+}
+.card-header{
+    /* border:1px solid green; */
+    background-color: #3f51b5;
+    color:white
+
+}
+
+.loginform{
+  /* border:1px solid red;  */
+  width: 100%;
+  margin-top: 20px ;
+  margin-bottom: 20px;
+ 
+}
+.form-fields{
+    /* border:1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.form-fields label{
+    /* border:1px solid red; */
+    width: 30%;
+    padding:10px;
+    font-size: 1.1rem;
+    color:rgb(255, 190, 10);
+}
+.form-fields input{
+    padding: 10px;
+    width:70%;
+    border:none;
+    border-bottom: 1px solid gray;
+    background-color: none;
+    color:rgb(24, 226, 24);
+    font-size: 16px;
+    
+}
+.form-fields input:focus{
+    outline:none
+}
+.btn{
+    padding: 20px;  
+    margin: auto;
+}
+
+.error{
+    color:yellow;
+    padding:10px;
+    
+
+}
