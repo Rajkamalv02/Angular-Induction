@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialsModule } from './materials/materials.module';
 import { ScheduleReportComponent } from './schedule-report/schedule-report.component';
 import { DialogboxComponent } from './dialogbox/dialogbox.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -25,6 +26,7 @@ import { DialogboxComponent } from './dialogbox/dialogbox.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialsModule,
+    HttpClientModule
    
  
    

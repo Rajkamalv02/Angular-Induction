@@ -38,7 +38,24 @@
 
       <button mat-button (click)="show()">Temporary</button>
     </div>
+    
+    <div *ngIf="isVisible" class="vehicle-select">
+      <div class="filter">
+        <div class="drop-down">
+            <select name="branch">
+              <option value="Thane">Thane</option>
+              <option value="Pune">Pune</option>
+              <option value="Mumbai">Mumbai</option>
+            </select>
+        </div>
+        <div class="search">
+            <input type="text">
+        </div>
+      </div>
+        
+       
 
+    </div>
     
 
 

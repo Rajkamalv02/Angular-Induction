@@ -1,28 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { TimeoutError } from 'rxjs';
+import { DatajsonService } from '../datajson.service';
 
 @Component({
   selector: 'app-dialogbox',
   templateUrl: './dialogbox.component.html',
   styleUrls: ['./dialogbox.component.css'],
 })
-export class DialogboxComponent {
+export class DialogboxComponent implements DoCheck {
   showEmailField: boolean = false;
   cancelEmailBtn: boolean = false;
   addEmailBtn: boolean = true;
   addEmailBox: boolean = false;
   checklists: any;
+  isVisible:boolean = false
   object_of_mails: any = [];
   email_list: any = [];
   emails: any;
-  constructor(private fb: FormBuilder) {
+  checklist_value:any
+
+  constructor(private fb: FormBuilder,public service:DatajsonService) {
     this.checklists = this.fb.group({
       FleetWise: '',
       VehicleWise: '',
       TripWise: '',
       DrivingWise: '',
-    });
-
+    });   
     this.emails = this.fb.group({
       email: ['', [Validators.email]],
     });
@@ -30,8 +34,25 @@ export class DialogboxComponent {
     console.log(this.checklists.value);
   }
 
+  ngDoCheck(){
+    console.log("onchanges")
+    this.selectVehicle()
+  }
+  selectVehicle(){
+
+    
+    this.checklist_value = this.checklists.value
+    
+    if(this.checklist_value.FleetWise===true && this.checklist_value.VehicleWise){
+      console.log(this.checklist_value,'from selectVehicle function')
+      this.isVisible = true
+    }
+  }
+
+
   show() {
-    console.log(this.checklists.value);
+   const data= this.service.getData() ;
+   console.log(data)
   }
 
   openEmail() {

@@ -1,4 +1,4 @@
-export const vehicles = [
+[
     {
         "branch": "Thane",
         "vin": "PYV096001N5A01064",
