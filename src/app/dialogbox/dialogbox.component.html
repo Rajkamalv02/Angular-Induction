@@ -123,9 +123,9 @@
       </div>
   
     </div>
-    <div class="error" style="color:red" *ngIf="emails.get('email')?.touched && emails.get('email')?.invalid">
-      <small *ngIf="emails.get('email')?.errors?.['email']">Provide valid mail</small>
-    </div>
+  
+      <small *ngIf="valid_mail" style="color:red">Provide valid mail</small>
+  
     <small *ngIf="error_message" style="color:red">Only five mails are allowed</small>
 
     <div class="emailbox" *ngIf="addEmailBox">

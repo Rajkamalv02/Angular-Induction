@@ -25,10 +25,11 @@ export class DialogboxComponent implements DoCheck,OnInit {
   filter_data:any 
   vehicleChecked:any=[]
   passedData:any = []
-
+  valid_mail:boolean = false
   error_message=false
    
   firstFormData={}
+
 
   constructor(private fb: FormBuilder,public service:DatajsonService,private matDialog:MatDialog) {
     this.checklists = this.fb.group({
@@ -120,7 +121,7 @@ export class DialogboxComponent implements DoCheck,OnInit {
       
         this.filter_data = this.filter_data.filter((obj:any)=>{  
           // console.log("filtering...")  
-          return obj.vin.toLowerCase().includes(text.filterText.toLowerCase())
+          return obj.vin.toLowerCase().includes(text.filterText.toLowerCase().trim())
       // console.log(text.filterText)
     })
      
@@ -141,12 +142,16 @@ export class DialogboxComponent implements DoCheck,OnInit {
     this.addEmailBtn = this.addEmailBtn ? false : true;
     this.error_message =false;
     this.emails.get('email').value=''
+    this.valid_mail = false
 
   }
 
 
   addEmail(mail: any) {
-
+    if(this.emails.get('email')?.touched && this.emails.get('email')?.invalid && this.emails.get('email')?.errors?.['email']){
+      this.valid_mail = true
+    }
+    
     if(!(this.email_list.length<5)){
       this.error_message = true
     }
