@@ -12,6 +12,8 @@ export class ConfirmBoxComponent {
         console.log("User details from Local Store",localStorage.getItem('user'))
         console.log("User firstForm from Local Store",localStorage.getItem('firstForm'))
         console.log("User secondForm from Local Store",localStorage.getItem('secondForm'))
+
+
   }
 
     sendData(){

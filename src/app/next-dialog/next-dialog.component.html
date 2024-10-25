@@ -127,11 +127,10 @@
             <mat-radio-button class="radio-button" value="Monthly"
               >Monthly</mat-radio-button
             >
-            <div class="show-week" *ngIf="checkedMonthly">
-              <mat-card class="calendar">
-                <mat-calendar [(selected)]="selected" [minDate]="currentDate">
-                </mat-calendar>
-              </mat-card>
+            <div class="datepicker" *ngIf="checkedMonthly">
+              <input matInput hidden [matDatepicker]="picker" [matDatepickerFilter]="myFilter" [min]="selected" (dateChange)="addEvent($event)">
+              <mat-datepicker class="datepicker" #picker></mat-datepicker>  
+             
             </div>
             <mat-radio-button class="radio-button" value="Quarterly"
               >Quarterly</mat-radio-button
@@ -156,12 +155,10 @@
                   >Custom</mat-button-toggle
                 >
                 <mat-card *ngIf="pickDateQ" class="calendar">
-                  <mat-calendar
-                    [(selected)]="selected"
-                    [minDate]="currentDate"
-                  ></mat-calendar>
+                  <input matInput hidden [matDatepicker]="picker" [matDatepickerFilter]="myFilter" [min]="selected">
+                  <mat-datepicker #picker></mat-datepicker> 
                 </mat-card>
-                <!-- <mat-calendar *ngIf="pickDateQ" class ="calendar" [(selected)]="selected" [minDate]="currentDate"></mat-calendar> -->
+               
               </mat-button-toggle-group>
             </div>
 
@@ -177,28 +174,26 @@
                  
                 >
                   <mat-button-toggle (click)="getLastYear()" 
-                    >Last day of the completed quarter</mat-button-toggle
+                    >Last day of the year</mat-button-toggle
                   >
                   <mat-button-toggle
                     (click)="getFirstYear()"
                 
-                    >First day of the next quarter</mat-button-toggle
+                    >First day of the next year</mat-button-toggle
                   >
                   <mat-button-toggle (click)="getCustomYear()"
                     >Custom</mat-button-toggle
                   >
     
                   <mat-card *ngIf="pickDateY" class="calendar">
-                    <mat-calendar
-                      [(selected)]="selected"
-                      [minDate]="currentDate"
-                    ></mat-calendar>
+                    <input matInput hidden [matDatepicker]="picker" [matDatepickerFilter]="myFilter" [min]="selected" (dateChange)="addEvent($event)" >
+              <mat-datepicker #picker></mat-datepicker> 
                   </mat-card>
                   <!-- <p>{{selected}}</p> -->
                 </mat-button-toggle-group>
               </div>
             </div>
-          </mat-radio-group>
+          </mat-radio-group> 
         </div>
       </div>
     </div>

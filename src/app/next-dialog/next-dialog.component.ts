@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
+import { MatDatepicker, MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-next-dialog',
@@ -9,8 +11,10 @@ import { ConfirmBoxComponent } from '../confirm-box/confirm-box.component';
   styleUrls: ['./next-dialog.component.css'],
 })
 export class NextDialogComponent implements OnInit {
-  selected: Date | null | undefined;
-
+  @ViewChild('picker') picker!: MatDatepicker<Date>;
+  
+  selected=new Date() ;
+  myFilter:any
   secondformData = {}
   report: any = [];
   vehicles: any = [];
@@ -44,6 +48,8 @@ export class NextDialogComponent implements OnInit {
   endDate:any;
   startDate:any
 
+  
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,private matDialog: MatDialog
@@ -57,6 +63,7 @@ export class NextDialogComponent implements OnInit {
       scheduleTime: '',
       toggle_midday:'',
       scheduleInterval: '',
+      scheduleDate:'',
       slideToggle: '',
 
 
@@ -64,11 +71,26 @@ export class NextDialogComponent implements OnInit {
     this.setTiming();
     this.handleRadioChange();
     this.weeks = [...this.days];
+   
+    
 
     // console.log(this.data.report_type);
     // console.log(this.data.vehicles);
     // console.log(this.data.mailed);
   }
+
+  addEvent(event: MatDatepickerInputEvent<Date>){
+        console.log("Monthly date",event.value)
+        this.setTime.get('scheduleDate').setValue(event.value!.toISOString().split('T')[0])
+        
+  }
+
+
+  openPicker(){
+    console.log("Picker is called")
+    this.picker.open()
+  }
+ 
   extractData() {
     this.mails = this.data.mailed;
     for (let i in this.data.report_type) {
@@ -77,7 +99,7 @@ export class NextDialogComponent implements OnInit {
       }
     }
     this.data.vehicles.map((obj: any) => {
-      this.vehicles.push(obj.lob_name);
+      this.vehicles.push((obj.registration_number + ", "+ obj.vin+ ", " +obj.lob_name));
     });
     this.vehicles = this.vehicles.join(', ');
     this.report = this.report.join(', ');
@@ -124,19 +146,32 @@ export class NextDialogComponent implements OnInit {
     console.log(this.schedule_time);
   }
 
+  
+
   handleRadioChange() {
     
     this.setTime.get('slideToggle').valueChanges.subscribe((value: boolean) => {
       console.log(this.setTime.value);
-
+      
       if (value === true) {
         console.log('toogle true Checked');
-        
+
         this.weeks.splice(5, 2);
         console.log(this.weeks);
+        this.myFilter=(d:Date | null| undefined)=>{
+          const day = (d || new Date()).getDay(); 
+            return day !== 0 && day !== 6;
+      
+        };
+        
       }
       if (value === false) {
         console.log('toogle false Checked');
+        this.myFilter=(d:Date | null| undefined)=>{
+          const day = (d || new Date()).getDay(); 
+            return day;
+      
+        };
         this.weeks = [...this.days];
         console.log(this.days);
         console.log(this.weeks);
@@ -155,8 +190,15 @@ export class NextDialogComponent implements OnInit {
           case 'Every 2 weeks':
             this.checkedWeekly2 = true;
             break;
-          case 'Monthly':
+          case 'Monthly':{
             this.checkedMonthly = true;
+            if(this.checkedMonthly){
+              setTimeout(()=>{
+              this.openPicker();
+              },100)
+            }
+            
+          }
             break;
           case 'Quarterly':
             this.checkedQuarterly = true;
@@ -183,7 +225,7 @@ export class NextDialogComponent implements OnInit {
 
   selectDay(i:any){
 
-    this.setTime.get('scheduleInterval').setValue(this.days[i])
+    this.setTime.get('scheduleDate').setValue(this.days[i])
     console.log(this.setTime.value)
 
   }
@@ -201,7 +243,7 @@ export class NextDialogComponent implements OnInit {
     const lastDate = new Date(year,month,day)
     console.log(lastDate);
     this.time_interval_lastDate = lastDate
-    this.setTime.get('scheduleInterval').setValue(this.time_interval_lastDate.toISOString().split('T')[0])
+    this.setTime.get('scheduleDate').setValue(this.time_interval_lastDate.toISOString().split('T')[0])
   }
   getFirstDay() {
     const date = new Date();
@@ -219,18 +261,24 @@ export class NextDialogComponent implements OnInit {
     const firstDate = new Date(lastDate)
     console.log(lastDate);
     this.time_interval_firstDate = lastDate
-    this.setTime.get('scheduleInterval').setValue(this.time_interval_firstDate.toISOString().split('T')[0])
+    this.setTime.get('scheduleDate').setValue(this.time_interval_firstDate.toISOString().split('T')[0])
   }
   getCustomDay() {
       this.pickDateQ = true
-      this.setTime.get('scheduleInterval').setValue(this.selected)
+      if(this.pickDateQ){
+        console.log('custom Quartarly date')
+        setTimeout(()=>{
+          this.openPicker();
+          },100)
+      }
+      
   }
   getLastYear(){
     const currdate = new Date()
     const year = currdate.getFullYear()
 
     this.endDate = new Date(year,11,31).toISOString().split('T')[0]
-    this.setTime.get('scheduleInterval').setValue(this.endDate)
+    this.setTime.get('scheduleDate').setValue(this.endDate)
     console.log(this.endDate)
 
 
@@ -240,13 +288,18 @@ export class NextDialogComponent implements OnInit {
     const year = currdate.getFullYear()
 
     this.startDate = new Date(year+1,0,1).toISOString().split('T')[0]
-    this.setTime.get('scheduleInterval').setValue(this.startDate)
+    this.setTime.get('scheduleDate').setValue(this.startDate)
     console.log(this.startDate)
   }
   getCustomYear(){
       this.pickDateY =true
-      this.setTime.get('scheduleInterval').setValue(this.selected)
+      if(this.pickDateY){
+        console.log('custom year date')
+        setTimeout(()=>{
+          this.openPicker();
+          },100)
   }
+}
 
 
 
@@ -266,4 +319,7 @@ export class NextDialogComponent implements OnInit {
 
   })
 }
+
+
+
 }

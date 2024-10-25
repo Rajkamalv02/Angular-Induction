@@ -179,5 +179,17 @@
 
     
 }
+.datepicker{
+    height: 200px;
+    border: 1px solid #555;
+    overflow: auto;
+    position: relative;
+}
+mat-datepicker{
+    position: absolute !important;
+    width: 300px !important;
+    height: 400px !important;
+}
+
 
 

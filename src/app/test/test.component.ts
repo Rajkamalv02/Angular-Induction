@@ -6,15 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent {
-    constructor(){
       
-      const filter =() =>{
-        const day = new Date().getDay();
+      myFilter = (d: Date | null): boolean => {
+        const day = (d || new Date()).getDay();
         return day !== 0 && day !== 6;
-      }
-        console.log(filter)
-       
-    }
+      };
+  
 
   };
 
