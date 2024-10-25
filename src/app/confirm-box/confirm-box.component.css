@@ -1,0 +1,32 @@
+.dialog-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #242424;
+
+    /* border: 1px solid red; */
+}
+
+.dialog-title .close-btn{
+    /* border: 1px solid red; */
+    padding:20px;
+    
+}
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    width:100%;
+    padding: 10px;
+
+    
+}
+
+.cl-btn{
+    background-color: white;
+    color:#0288D1;
+    border:1px solid #0288D1;
+    
+}

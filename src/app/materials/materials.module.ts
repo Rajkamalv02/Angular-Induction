@@ -5,6 +5,12 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
@@ -14,7 +20,14 @@ const Materials =[
   MatFormFieldModule,
   MatDialogModule,
   MatIconModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatDatepickerModule,
+  MatRadioModule,
+  MatNativeDateModule,
+  MatButtonToggleModule,
+  MatSlideToggleModule
+
+
   
 
   

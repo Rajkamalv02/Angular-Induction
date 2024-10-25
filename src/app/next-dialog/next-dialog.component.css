@@ -1,0 +1,183 @@
+.dialog-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #242424;
+
+    /* border: 1px solid red; */
+}
+
+.dialog-title .close-btn{
+    /* border: 1px solid red; */
+    padding:20px;
+    
+}
+.reports-fields{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    /* border: 1px solid red; */
+
+}
+.reports-title{
+    /* border: 1px solid red; */
+    width:30%
+}
+.reports-title h3{
+   font-weight: bold;
+
+}
+.reports-value{
+    /* border: 1px solid red; */
+    width: 60%;
+    font-size: 14px;
+
+}
+.time-interval-text{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.time-interval-text h3{
+    color:#242424;
+    font-weight: bold;
+}
+
+.calendar{
+    width: 100%;
+    height: auto;
+    /* border:1px solid red; */
+  }
+
+
+.btn-toggle{
+    display: flex;
+    flex-direction: column;
+    border:1px solid #242424;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    
+}
+.time{
+    display: flex;
+    /* border:1px solid red; */
+    justify-content: space-between;
+    align-items: center;
+}
+/* .time-field{
+    display: flex;
+    border:1px solid green;
+} */
+.time-input{
+    display: flex;
+    width: 20%;
+}
+.time-input input{
+    width:80px;
+    border:none;
+}
+.time-change{
+    display: flex;
+    flex-direction: column;
+    /* border:1px solid green; */
+    
+}
+/* .midday-toggle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border:1px solid green; }*/
+
+
+
+
+
+
+
+
+.up{
+    rotate: 270deg;
+    /* border:1px solid green; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.down{
+    rotate: 90deg;
+    /* border:1px solid green; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.midday{
+    /* border:1px solid red; */
+}
+
+.midday-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid green; */
+}
+::ng-deep .midday mat-button-toggle-group{
+    border:none !important;
+    width: 100%;
+}
+::ng-deep .midday mat-button-toggle {
+    color: blue;
+    background-color: rgb(208, 218, 219) !important;
+    width: 60px; 
+    height: 20px; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+
+::ng-deep .midday mat-button-toggle .mat-button-toggle-label-content {
+    padding: 0 !important;
+    font-size: 10px;
+    line-height: 1; 
+}
+
+::ng-deep .midday mat-button-toggle.mat-button-toggle-checked {
+    background-color: #3B71CA !important; 
+    color: white !important;
+}
+.show-week{
+    display: flex;
+}
+.days{
+    padding:10px;
+    text-align: center;
+    border:1px solid gray;
+    display: block;
+    cursor: pointer;
+}
+.radio-button{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    width:100%;
+    padding: 10px;
+
+    
+}
+
+

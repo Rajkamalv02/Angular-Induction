@@ -55,6 +55,7 @@ export class LoginComponent implements OnInit {
       if (user) {
         this.error = true;
         localStorage.setItem('user', JSON.stringify(user));
+        console.log("LocalStorage",localStorage.getItem('user'))
         
         this.router.navigate(['/schedule']);
       } else {

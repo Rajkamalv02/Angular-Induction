@@ -13,7 +13,7 @@ export class ScheduleReportComponent {
   OpenDialogBox(){
     this.dialogbox.open(DialogboxComponent,{
       width: '565px',
-      height:'514px'
+      
 
     })
   }

@@ -6,10 +6,10 @@
 
     /* border: 1px solid red; */
 }
-.dialog-title h1{
-    /* border: 1px solid red; */
+/* .dialog-title h1{
+    border: 1px solid red;
 
-}
+} */
 .dialog-title .close-btn{
     /* border: 1px solid red; */
     padding:20px;
@@ -55,7 +55,9 @@
     flex-direction: column;
 } 
 
-
+.email{
+    margin-top: 10px;
+}
 .email-title{
     display: flex;
     justify-content: space-between;
@@ -73,22 +75,23 @@
 
 }
 
-.email-title-text h2{
-    /* border:1px solid yellow; */
+/* .email-title-text h2{
+    border:1px solid yellow;
     
     
-}
-.email-fields{
-    /* border:1px solid green; */
+} */
+/* .email-fields{
+    border:1px solid green;
     
 
-}
+} */
 .email-fields input{
     width: 200px;
     height: 30px;
     border-radius: 10px;
     border: 1px solid gray;
     margin-right: 10px;
+    padding: 5px;
     
 
 }
@@ -108,10 +111,11 @@
 
 .emailbox {
     /* width: 100%; */
-    height: 113px;
+    height: auto;
+    margin-top: 30px;
     width: 485px;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -157,10 +161,94 @@
     margin-left: 10px;
 
 }
+.vehicle-select-title h3,.email-title-text h3{
+    color:#242424;
+    font-weight: bold;
+    
+    
+    
+}
 
 .vehicle-select{
     width: 485px;
-    height: 282px;
+   max-height: 282px;
     border:1px solid gray;
     border-radius:10px;
+    overflow-y: auto;
+    color:#242424;
+}
+
+.filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    
+    padding: 10px;
+    /* border:1px solid #0288D1; */
+}
+.drop-down ,.search{
+    /* border:1px solid #0288D1; */
+    /* padding:10px; */
+    width: 45%;
+    margin-bottom: 10px;
+}
+.drop-down select,.search input{
+    /* border:1px solid #0288D1; */
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+   border:1px solid gray;
+   
+    
+}
+/* .text input{
+    border:1px solid #0288D1;
+
+} */
+
+
+.vehicle-list-value{
+    display: flex;
+    flex-direction: column;
+}
+/* 
+.dropdown{
+
+} */
+
+.vehicle{
+    display: grid;
+    grid-template-columns:auto auto;
+    gap:10px 10px;
+    width:100%; 
+    justify-content: center;
+    
+      
+}
+.vehicle-list{
+    border-radius: 10px;
+    background-color: rgb(227, 245, 245);
+    padding: 10px;
+    
+    /* border:1px solid red; */
+   
+}
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+    width:100%;
+    padding: 10px;
+
+    
+}
+
+.cl-btn{
+    background-color: white;
+    color:#0288D1;
+    border:1px solid #0288D1;
+    
 }

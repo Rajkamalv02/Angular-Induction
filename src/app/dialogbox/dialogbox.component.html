@@ -12,49 +12,75 @@
       <div class="checklists" [formGroup]="checklists">
         <mat-checkbox
           class="dialog-content-checkbox"
-          disableRippled
+        
           formControlName="FleetWise"
+          
           >Fleet Wise Report</mat-checkbox
         >
         <mat-checkbox
           class="dialog-content-checkbox"
-          disableRipple="true"
+        
           formControlName="VehicleWise"
           >Vehicle Wise Report</mat-checkbox
         >
         <mat-checkbox
           class="dialog-content-checkbox"
-          disableRipple="true"
+         
           formControlName="TripWise"
           >Trip wise</mat-checkbox
         >
         <mat-checkbox
           class="dialog-content-checkbox"
-          disableRipple="true"
+       
           formControlName="DrivingWise"
           >Driving Scorecard Report</mat-checkbox
         >
       </div>
 
-      <button mat-button (click)="show()">Temporary</button>
+      <!-- <button mat-button (click)="show()">Temporary</button> -->
     </div>
     
-    <div *ngIf="isVisible" class="vehicle-select">
-      <div class="filter">
-        <div class="drop-down">
-            <select name="branch">
+    <div *ngIf="isVisible">
+      <div class="vehicle-select-title">
+        <h3>Select Vehicle</h3>
+      </div>
+      <div class="vehicle-select">
+      <div class="filter" [formGroup]="filterOption">
+        <div class="drop-down" >
+            <select name="branch" formControlName="filterSelect">
+              <option value="All Vehicle">All Vehicle</option>
               <option value="Thane">Thane</option>
               <option value="Pune">Pune</option>
               <option value="Mumbai">Mumbai</option>
             </select>
+
+    
         </div>
         <div class="search">
-            <input type="text">
+            <input type="text" (input)="perform_filterText()" formControlName="filterText" placeholder="Search by Vin">
         </div>
       </div>
+      <div class="vehicle">
+
+        <div class="vehicle-list" *ngFor="let info of this.filter_data;let i=index">
+        
+          <mat-checkbox (change)="vehicle($event,info,i)">
+            <div class="vehicle-list-value">
+              <span style="font-weight: bold;font-size: 12px;">{{info.vin}}</span>
+            <span>{{info.registration_number}}</span>
+            <span>{{info.lob_name}}</span>
+            </div> 
+            
+          </mat-checkbox>
+
+
+      </div>
+      </div>
+ 
         
        
 
+    </div>
     </div>
     
 
@@ -62,7 +88,7 @@
     <div class="email">
       <div class="email-title">
         <div class="email-title-text">
-          <h2>Enter email ids</h2>
+          <h3>Enter email ids</h3>
         </div>
         <div class="email-btn">
           <button
@@ -86,6 +112,7 @@
 
       <div class="email-fields" *ngIf="showEmailField" [formGroup]="emails">
         <input type="email" formControlName="email" />
+
         <button
           (click)="addEmail(emails.value)"
           mat-flat-button
@@ -94,7 +121,12 @@
           Add
         </button>
       </div>
+  
     </div>
+    <div class="error" style="color:red" *ngIf="emails.get('email')?.touched && emails.get('email')?.invalid">
+      <small *ngIf="emails.get('email')?.errors?.['email']">Provide valid mail</small>
+    </div>
+    <small *ngIf="error_message" style="color:red">Only five mails are allowed</small>
 
     <div class="emailbox" *ngIf="addEmailBox">
       <div class="email_list" *ngFor="let mail of email_list;let i = index">
@@ -105,8 +137,18 @@
     </div>
   </div>
   <div mat-dialog-actions>
-
-
+      
+      <div class="btn">
+        <button class="cl-btn" mat-raised-button mat-dialog-close>
+            Cancel
+        </button>
+        <button mat-raised-button color="primary" [disabled]="isNext()" (click)="next()">
+          Next
+        </button>
+        
+      </div>
 
   </div>
 </div>
+
+

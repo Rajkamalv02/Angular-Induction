@@ -1,0 +1,21 @@
+<div class="dialog-title">
+    <h1 mat-dialog-title>Schedule Reports</h1>
+
+    <span class="close-btn" mat-dialog-close
+      ><mat-icon fontIcon="close"></mat-icon
+    ></span>
+  </div>
+
+
+<div mat-dialog-content class="message">
+   <p>Your {{data.rep}} reports will sent to {{data.mail}}</p> 
+   <p>On the {{data.schedule.scheduleInterval}} of a fortnight,at {{data.schedule.scheduleTime}} {{data.schedule.toggle_midday}}</p>
+</div>
+
+<div mat-dialog-actions>
+    <div class="btn">
+      <button class="cl-btn" mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" (click)="sendData()" >Confirm</button>
+    </div>
+  </div>
+

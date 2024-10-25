@@ -1,0 +1,213 @@
+<div class="dialog-box">
+  <div class="dialog-title">
+    <h1 mat-dialog-title>Schedule Reports</h1>
+
+    <span class="close-btn" mat-dialog-close
+      ><mat-icon fontIcon="close"></mat-icon
+    ></span>
+  </div>
+
+  <div mat-dialog-content>
+    <div class="reports">
+      <div class="reports-fields">
+        <div class="reports-title">
+          <h3>Report Types</h3>
+        </div>
+        <div class="reports-value">
+          <p>
+            {{ report }}
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reports-fields">
+          <div class="reports-title">
+            <h3>Vehicles</h3>
+          </div>
+          <div class="reports-value">
+            <p>
+              {{ vehicles }}
+            </p>
+          </div>
+        </div>
+        <div class="reports-fields">
+          <div class="reports-title">
+            <h3>Mailed to</h3>
+          </div>
+          <div class="reports-value">
+            <p>
+              {{ mails }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="dateTime" [formGroup]="setTime">
+
+      <div class="time">
+
+        <div class="time-text">
+          <h3>Set Time</h3>
+        </div>
+
+    
+    <div style="display: flex; width:40% ;justify-content: space-between;">
+          <div class="time-input">
+           
+
+            <input
+              formControlName="scheduleTime"
+              [value]="schedule_time"
+              readonly
+              type="text"
+            />
+            <div class="time-change">
+              <span class="up" (click)="timeInc()"
+                ><mat-icon>chevron_right</mat-icon></span
+              >
+              <span class="down" (click)="timeDec()"
+                ><mat-icon>chevron_right</mat-icon></span
+              >
+            </div>
+          </div >
+            <div class="midday">
+                <mat-button-toggle-group
+                class="midday-toggle"
+                name="midday"
+                formControlName="toggle_midday"
+                >
+                <mat-button-toggle value="AM">AM</mat-button-toggle>
+                <mat-button-toggle value="PM">PM</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        
+
+      </div>
+    </div>
+
+
+
+
+      <div class="time-interval">
+        <!-- <div style="display: flex ;justify-content: space-between;align-items: center;"> -->
+            <div class="time-interval-text">
+                <h2>Select Time Interval</h2>
+                <p>
+                  <mat-slide-toggle
+                    formControlName="slideToggle"
+                    labelPosition="before"
+                    >Skip Weekends</mat-slide-toggle
+                  >
+                </p>
+              </div>
+        <!-- </div> -->
+ 
+        <div class="radio-button">
+          <mat-radio-group
+            class="radio-group"
+            formControlName="scheduleInterval"
+          >
+            <mat-radio-button class="radio-button" value="Weekly"
+              >Weekly</mat-radio-button
+            >
+            <div class="show-week" *ngIf="checkedWeekly">
+              <div class="days" *ngFor="let day of weeks;let i=index">
+                <span (click)="selectDay(i)">{{ day }}</span>
+              </div>
+            </div>
+            <mat-radio-button class="radio-button" value="Every 2 weeks"
+              >Every 2 weeks</mat-radio-button
+            >
+            <div class="show-week" *ngIf="checkedWeekly2">
+              <div class="days" *ngFor="let day of weeks;let i=index">
+                <span (click)="selectDay(i)">{{ day }}</span>
+              </div>
+            </div>
+            <mat-radio-button class="radio-button" value="Monthly"
+              >Monthly</mat-radio-button
+            >
+            <div class="show-week" *ngIf="checkedMonthly">
+              <mat-card class="calendar">
+                <mat-calendar [(selected)]="selected" [minDate]="currentDate">
+                </mat-calendar>
+              </mat-card>
+            </div>
+            <mat-radio-button class="radio-button" value="Quarterly"
+              >Quarterly</mat-radio-button
+            >
+            <div class="show-week" *ngIf="checkedQuarterly">
+              <mat-button-toggle-group
+                class="btn-toggle"
+                name="quarter"
+                
+              >
+                <mat-button-toggle
+                  (click)="getLastDay()"
+                  
+                  >Last day of the completed quarter</mat-button-toggle
+                >
+                <mat-button-toggle
+                  (click)="getFirstDay()"
+                  
+                  >First day of the next quarter</mat-button-toggle
+                >
+                <mat-button-toggle (click)="getCustomDay()"
+                  >Custom</mat-button-toggle
+                >
+                <mat-card *ngIf="pickDateQ" class="calendar">
+                  <mat-calendar
+                    [(selected)]="selected"
+                    [minDate]="currentDate"
+                  ></mat-calendar>
+                </mat-card>
+                <!-- <mat-calendar *ngIf="pickDateQ" class ="calendar" [(selected)]="selected" [minDate]="currentDate"></mat-calendar> -->
+              </mat-button-toggle-group>
+            </div>
+
+            <mat-radio-button class="radio-button" value="Yearly"
+              >Yearly</mat-radio-button
+            >
+            <div class="show-week" *ngIf="checkedYearly">
+
+              <div>
+                <mat-button-toggle-group
+                  class="btn-toggle"
+                  name="quarter"
+                 
+                >
+                  <mat-button-toggle (click)="getLastYear()" 
+                    >Last day of the completed quarter</mat-button-toggle
+                  >
+                  <mat-button-toggle
+                    (click)="getFirstYear()"
+                
+                    >First day of the next quarter</mat-button-toggle
+                  >
+                  <mat-button-toggle (click)="getCustomYear()"
+                    >Custom</mat-button-toggle
+                  >
+    
+                  <mat-card *ngIf="pickDateY" class="calendar">
+                    <mat-calendar
+                      [(selected)]="selected"
+                      [minDate]="currentDate"
+                    ></mat-calendar>
+                  </mat-card>
+                  <!-- <p>{{selected}}</p> -->
+                </mat-button-toggle-group>
+              </div>
+            </div>
+          </mat-radio-group>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <div class="btn">
+      <button class="cl-btn" mat-raised-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" (click)="done()" >Done</button>
+    </div>
+  </div>
+</div>
